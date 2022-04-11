@@ -1,7 +1,23 @@
 # SERV_Series_Test
+
+This is made possible by developing NFT smart contracts in Solidity on the Ethereum blockchain that are programmed to automatically facilitate the charity and lottery simultaneously. Here is an overview of the tech stack..
+
+
+The smart contracts implemented in Solidity use various libraries from OpenZeppelin and Chainlink VRF V2 (to provide randomness necessary for lottery)
+IDEs used include Remix and VSCode.
+
+Smart contract deployment involves a suit of tools comprising of: 
+
+Deployment: Ethereum Rinkeby Testnet (Also tested deployment with Binance BNB and Polygon Mumbai testnets)
+
+Testing: Hardhat waffle, Mocha, Chai, Code Coverage, Slither
+
+Build Tools: Hardhat (Also tested with Truffle and Ganache)
+
+Development Language and IDE Tools: Solidity, Ethers.js (Also tested with Web3.js),  Remix, VScode
 SERV Series is comprised of a smart contract the produces multiple NFT collections(Series) to create a new way to donate to charities!
 
-This is made possible by developing NFT smart contracts in Solidity on the Ethereum blockchain that are programmed to automatically facilitate the charity and lottery simultaneously. Here is a high level overview of the smart contract from start to finish.
+Here is a high level overview of the smart contract from start to finish.
 
 
 Inside of the smart contract there is a mint() function that mints a given number of NFTs onto the Ethereum blockchain and is posted onto the OpenSea marketplace. NFTs are then available for purchase.
@@ -17,6 +33,6 @@ Because smart contracts are immutable, we had to choose a test network to deploy
 
 In the beginning stages Truffle and Ganache frameworks were used to deploy the contract onto the Rinkeby testnet work but we ultimately decided to go with Hardhat because of its testing, deploying and debugging features. 
 
-To ensure the code is not susceptible to attacks and working as intended, hardhat/waffle is used to create unit tests for the smart contract. Slither is being used to check the code for vulnerabilities. Code coverage is also being used to increse the level of tested code. 
+To ensure the code is not susceptible to attacks and working as intended, hardhat/waffle is used to create unit tests for the smart contract. Slither is being used to check the code for vulnerabilities. Code coverage is also being used (now at 70%) to increse the level of tested code. 
 
 
