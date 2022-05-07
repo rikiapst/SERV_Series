@@ -53,6 +53,7 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
 
     event Winner(uint256 _requestId, uint256 _randomWords, uint256 _winner);
     event TransferFrom(address _from, address _to, uint256 _tokenId);
+    event Airdrop(address _from, address _to, uint256 _tokenId);
 
     bool lotteryOpen = false;
 
@@ -77,7 +78,7 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
     }
 
     function baseTokenURI() public pure override returns (string memory) {
-        return "http://18.208.216.46/nft/";
+        return "https://9j8kyzfpw3.execute-api.us-east-1.amazonaws.com/default/nft/";
     }
 
     function contractURI() public pure returns (string memory) {
@@ -101,7 +102,6 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
     
 
     function requestRandomWords() public{
-        console.log("request random words being called");
         // Will revert if subscription is not set and funded.
         s_requestId = COORDINATOR.requestRandomWords(
             keyHash,
@@ -138,6 +138,7 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
              }
         }
          emit TransferFrom(from, to, tokenId);
+         emit Airdrop(from, to, tokenId);
     }
 
 
@@ -172,27 +173,32 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
 
    function payOut() public onlyOwner {
         uint256 charityPayout = this.wethBalance() / 10;
-        WETH.transferFrom(
+        bool transferSuccess;
+        transferSuccess = WETH.transferFrom(
             s_owner,
             maintenance,
             this.wethBalance() / 5 
         );
+
+        require(transferSuccess, "transfer to maintenance account unsuccessful");
         
         if(winner <= nftSold){ 
-            WETH.transferFrom(
+            transferSuccess = WETH.transferFrom(
                 s_owner,
                 this.ownerOf(winner + lotterytStart),
                 this.wethBalance() - charityPayout
             );
+            require(transferSuccess, "transfer to winner account unsuccessful");
         } 
         else{
             charityPayout = this.wethBalance();
         }
-        WETH.transferFrom(
+        transferSuccess = WETH.transferFrom(
             s_owner,
             charity,
             charityPayout
         );
+        require(transferSuccess, "transfer to charity account unsuccessful");
     }
  
 }

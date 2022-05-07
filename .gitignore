@@ -1,0 +1,15 @@
+build/
+flattened/
+node_modules/
+.env*
+*.DS_Store
+env_vars.sh
+artifacts
+contracts/artifacts
+.vscode
+cache
+soljson*
+my-env
+artifacts
+coverage
+coverage.json

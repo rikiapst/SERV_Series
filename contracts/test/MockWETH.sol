@@ -32,6 +32,7 @@ contract MockWETH is IERC20 {
     ) external override returns (bool){
         balances[from] -= amount;
         balances[to] += amount;
+        return true;
     }
 
 }
