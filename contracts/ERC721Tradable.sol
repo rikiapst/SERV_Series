@@ -63,6 +63,10 @@ abstract contract ERC721Tradable is
         _safeMint(_to, currentTokenId);
     }
 
+    function supplyDecrement() public onlyOwner {
+        _nextTokenId.decrement();
+    }
+
     /**
         @dev Returns the total tokens minted so far.
         1 is always subtracted from the Counter since it tracks the next available tokenId.

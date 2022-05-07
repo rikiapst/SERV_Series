@@ -127,6 +127,7 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
         address to,
         uint256 tokenId
     ) public override {
+        require(to != s_owner, "cannot transfer to owner address");
         ERC721Tradable.transferFrom(from, to, tokenId);
 
         if (from == s_owner) {

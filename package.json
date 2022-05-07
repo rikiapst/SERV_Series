@@ -4,6 +4,7 @@
   "description": "NFT Collections",
   "main": "index.js",
   "scripts": {
+    "slither": "slither .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -24,6 +25,7 @@
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.2",
     "hardhat": "^2.9.2",
+    "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.7.20"
   },
   "dependencies": {

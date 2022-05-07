@@ -231,6 +231,14 @@ describe("NFT contract", function () {
 
     })
   })
-  
+
+  describe("Invalid transfer", function (){
+
+    it("should revert invalid transfers", async function () {
+      await lotteryContract.mint(1);
+      await lotteryContract.transferFrom(owner.address, addr1.address, 1);
+      await expect(lotteryContract.transferFrom(addr1.address, owner.address, 1)).to.be.revertedWith("cannot transfer to owner address");
+    })
+  });
 
 });
