@@ -2,6 +2,7 @@
  * @type import('hardhat/config').HardhatUserConfig
  */
  require('solidity-coverage')
+ require("hardhat-gas-reporter");
  
  const MNEMONIC = process.env.MNEMONIC;
  const API_KEY = process.env.API_KEY;
@@ -17,7 +18,21 @@
 });
 
 module.exports = {
-  solidity: "0.8.7",
+  gasReporter: {
+    currency: 'USD',
+    enabled: true,
+    gasPrice: 21,
+    coinmarketcap: process.env.COINMARKETCAP_KEY
+  },
+  solidity: {
+    "version": "0.8.7",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000,
+      },
+    }
+  },
   networks: {
     rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${API_KEY}`,

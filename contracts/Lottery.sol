@@ -172,6 +172,22 @@ contract Lottery is ERC721Tradable, VRFConsumerBaseV2 {
    }
 
 
+   // burns the oustanding NFTs not sold and initiates lottery.
+   function burnResidual() public onlyOwner {
+       uint256 residualNFTs = this.totalSupply() - (lotterytStart + nftSold);
+       require(residualNFTs > 0, "At least 1 NFT must be sold to initiate lottery");
+       uint256 tokenID;
+       for(uint256 i=1; i <= residualNFTs; i++){
+           tokenID = i + lotterytStart + nftSold;
+           require(this.ownerOf(tokenID) == s_owner, "Attempting to burn token not owned by contract owner");
+           _burn(tokenID);
+           supplyDecrement();
+       }
+       lotteryOpen = false;
+       requestRandomWords();
+   }
+
+
    function payOut() public onlyOwner {
         uint256 charityPayout = this.wethBalance() / 10;
         bool transferSuccess;

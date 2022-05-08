@@ -232,6 +232,21 @@ describe("NFT contract", function () {
     })
   })
 
+  describe("Burn funcion", function (){
+
+    it("should burn the residual NFTs when burnResidual is called", async function () {
+      await lotteryContract.mint(104);
+      for(let i=1; i<5; i++){
+        await lotteryContract.transferFrom(owner.address, addr1.address, i);
+      }
+      expect(await lotteryContract.totalSupply()).to.equal(104);
+      expect(await vrfCoordinatorContract.requestRandomWordsCalled()).to.equal(false);
+      await lotteryContract.burnResidual();
+      expect(await lotteryContract.totalSupply()).to.equal(4);
+      expect(await vrfCoordinatorContract.requestRandomWordsCalled()).to.equal(true);
+    })
+  });
+
   describe("Invalid transfer", function (){
 
     it("should revert invalid transfers", async function () {
