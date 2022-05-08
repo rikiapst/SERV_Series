@@ -235,15 +235,17 @@ describe("NFT contract", function () {
   describe("Burn funcion", function (){
 
     it("should burn the residual NFTs when burnResidual is called", async function () {
-      await lotteryContract.mint(104);
+      await lotteryContract.mint(204);
       for(let i=1; i<5; i++){
         await lotteryContract.transferFrom(owner.address, addr1.address, i);
       }
-      expect(await lotteryContract.totalSupply()).to.equal(104);
+      expect(await lotteryContract.totalSupply()).to.equal(204);
       expect(await vrfCoordinatorContract.requestRandomWordsCalled()).to.equal(false);
+      expect(await lotteryContract.getLotteryOpen()).to.equal(true);
       await lotteryContract.burnResidual();
       expect(await lotteryContract.totalSupply()).to.equal(4);
       expect(await vrfCoordinatorContract.requestRandomWordsCalled()).to.equal(true);
+      expect(await lotteryContract.getLotteryOpen()).to.equal(false);
     })
   });
 
