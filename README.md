@@ -1,8 +1,8 @@
 # SERV Series
-<b>WHY</b>
+<b>WHY</b> <br>
 There are thousands of charitable organizations, non profits, and individuals who actively donate their resources to an important cause. The issue here is that with traditional financial systems, there’s no way to prove and assure the donors that their money is going to the cause intended. There have been countless investigations into charities concerning misuse of funds. 
 
-<b>WHAT</b>
+<b>WHAT</b><br>
 SERV Series is a product that addresses this issue in an innovative and fun way! It uses NFT technology to facilitate charities, leveraging the transparency and programmability of blockchains along with the principle of digital ownership associated with NFTs to create a unique, rewarding, and memorialized experience for donors and recipients. 
 Here are some of the key differences that sets us apart from other charities in the space. 
 <ul>
@@ -16,7 +16,7 @@ Here are some of the key differences that sets us apart from other charities in 
 This idea came about because I desperately wanted to find a way to consistently push money into different communities and causes while bringing value to all parties involved. There are near and long term plans to provide more value and utility for both the donors and recipients. One example would be creating a DAO for the donors to build a community around philanthropy and vote on which charities to donate.
 
 
-<b>HOW</b>
+<b>HOW</b><br>
 
 This is made possible by developing NFT smart contracts in Solidity on the Ethereum blockchain that are programmed to automatically facilitate the charity and lottery simultaneously. 
 
